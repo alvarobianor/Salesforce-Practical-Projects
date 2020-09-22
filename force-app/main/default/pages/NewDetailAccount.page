@@ -1,0 +1,28 @@
+<apex:page standardController="Account">
+    
+     <apex:pageBlock title="Account Primary Contact">
+        <apex:pageBlockSection columns="2">
+            <apex:outputField value="{! Account.Name }"/>
+            <apex:outputField value="{! Account.Phone }"/>
+            <apex:outputField value="{! Account.Industry }"/>
+            <apex:outputField value="{! Account.AnnualRevenue }"/>               
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+    <apex:pageBlock title="Search Related Contacts">
+        <apex:pageBlockSection >
+        	<p>
+               Search field here
+            </p> 
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+    
+    <apex:pageBlock title="Related Contacts">
+        <apex:pageBlockSection >
+        	<p>
+               Contacts here
+            </p> 
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>
