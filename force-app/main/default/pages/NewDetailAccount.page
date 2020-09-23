@@ -1,5 +1,5 @@
 <apex:page standardController="Account">
-
+    
     <apex:form >
      <apex:pageBlock title="Account Primary Contact">
         <apex:pageBlockSection columns="2">
@@ -30,7 +30,18 @@
             <apex:column value="{!contact.Title}"/>
             <apex:column value="{!contact.Phone}"/>
             <apex:column value="{!contact.Is_Primary_Contact__c}"/>
-            
+            <apex:column onclick="myFunction('{!contact.Name}')"> <a href="#">Set Primary</a> </apex:column>
     	</apex:pageBlockTable>
+        
     </apex:pageBlock>
+    
+   	<script>
+    	// test
+        function myFunction(name) {
+          const a = confirm(name)
+          console.log(a)
+        }
+	</script>
+    
+    
 </apex:page>
