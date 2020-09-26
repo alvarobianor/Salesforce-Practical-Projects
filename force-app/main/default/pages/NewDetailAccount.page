@@ -18,14 +18,14 @@
     <apex:form >
         <apex:pageBlock title="Search Related Contacts">
             <apex:pageBlockSection >
-                <apex:inputText id="Searh"/>
-                <apex:commandButton onclick="" value="Search"/>
+                <apex:inputText id="Search"/>
+                <apex:commandButton onclick="{!returncontacts}" value="Search"/>
             </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form>
     
     <apex:pageBlock title="Related Contacts">
-      	<apex:pageBlockTable value="{!r}" var="contact" id="PBT" >
+      	<apex:pageBlockTable value="{!Account.contacts}" var="contact" id="PBT" >
             <apex:column value="{!contact.Name}"/>
             <apex:column value="{!contact.Title}"/>
             <apex:column value="{!contact.Phone}"/>
@@ -40,6 +40,10 @@
         function myFunction(name) {
           const a = confirm(name)
           console.log(a)
+        }
+    
+    	function chargeList(){
+        	
         }
 	</script>
     

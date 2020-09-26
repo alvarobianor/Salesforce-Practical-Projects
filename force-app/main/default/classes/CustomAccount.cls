@@ -1,18 +1,18 @@
-public class AccountResearch {
+public class CustomAccount {
 
-   private final Account account; 
-    
-   public AccountResearch(ApexPages.StandardController acon) { }
-    
-    public AccountResearch(){
-        account = [SELECT Id, Name, Site FROM Account 
+    private Account account;
+ 
+    public CustomAccount() {
+        account = [SELECT Id, Name FROM Account 
                    WHERE Id = :ApexPages.currentPage().getParameters().get('id')];
+    }
+ 
+    public Account getCustomAccount() {
+        return account;
     }
     
     public Contact[] getReturnContacts(String name){
         //Account acc = [select Id, Name from Account where Name like :nameAcc limit 1];
-        
-        
         if(name == ''){
             return new List<Contact>();
         }
@@ -25,8 +25,7 @@ public class AccountResearch {
         for(Integer i =0; i<contacts.size();i++){
             String accountId = contacts[i].AccountId;
             Account acc = [select Id, Name from Account where Id = :accountId limit 1];
-            
-            if(acc.Name == account.Name){
+            if(acc.Name == this.account.Name){
                 filterContacts.add(contacts[i]);
             }
         }
@@ -36,15 +35,4 @@ public class AccountResearch {
     
     }
     
-    public Contact[] getR(){
-        return [select Name, Title, Phone, Is_Primary_Contact__c, AccountId
-                          from Contact];
-    }
-    
 }
-
- 		// String aiai = contacts[0].AccountId;
-       // System.debug(acc);
-       // Account acc2 = [select Id, Name from Account where Id = :aiai limit 1];
-        //System.debug(contacts);
-        //System.debug(acc2);
