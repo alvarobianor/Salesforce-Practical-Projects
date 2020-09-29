@@ -1,21 +1,26 @@
-public class AccountResearch {
-
-   private final Account account; 
+public with sharing class AccountResearch {
     
-   public AccountResearch(ApexPages.StandardController acon) { }
+   public Account acct {get;set;}
     
-    public AccountResearch(){
-        account = [SELECT Id, Name, Site FROM Account 
-                   WHERE Id = :ApexPages.currentPage().getParameters().get('id')];
+    public AccountResearch(ApexPages.StandardController stdController) {
+        this.acct = (Account)stdController.getRecord();
     }
-    
-    public Contact[] getReturnContacts(String name){
+  
+       
+    public Contact[] getR(){
         //Account acc = [select Id, Name from Account where Name like :nameAcc limit 1];
         
-        
-        if(name == ''){
-            return new List<Contact>();
+       /* 
+        if(name == '' || name == null){
+            Contact a = new Contact(lastName='Alvim');
+            Contact[] b = new List<Contact>();
+            b.add(a);
+            return b;
         }
+*/
+        
+        String name = this.acct.searchField__c;
+        
         Contact[] contacts = [select Name, Title, Phone, Is_Primary_Contact__c, AccountId
                           from Contact as c
                           where c.Name like :name];
@@ -26,21 +31,28 @@ public class AccountResearch {
             String accountId = contacts[i].AccountId;
             Account acc = [select Id, Name from Account where Id = :accountId limit 1];
             
-            if(acc.Name == account.Name){
+            if(acc.Name == this.acct.Name){
                 filterContacts.add(contacts[i]);
             }
         }
             
-        System.debug(filterContacts);
+        
         return filterContacts;    
     
     }
     
-    public Contact[] getR(){
-        return [select Name, Title, Phone, Is_Primary_Contact__c, AccountId
-                          from Contact];
+    public void save(){
+
+        update acct;
+
     }
     
+   /*
+    public Contact[] getR(){
+        return [select Name, Title, Phone, Is_Primary_Contact__c, AccountId
+                       from Contact];
+    }
+    */
 }
 
  		// String aiai = contacts[0].AccountId;

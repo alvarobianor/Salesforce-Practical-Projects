@@ -18,14 +18,14 @@
     <apex:form >
         <apex:pageBlock title="Search Related Contacts">
             <apex:pageBlockSection >
-                <apex:inputText id="Search"/>
-                <apex:commandButton onclick="{!returncontacts}" value="Search"/>
+                <apex:inputField id="Search" value="{! Account.searchField__c}"/>
+                <apex:commandButton value="Search" action="{! save}" reRender="PBT"/>
             </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form>
     
     <apex:pageBlock title="Related Contacts">
-      	<apex:pageBlockTable value="{!Account.contacts}" var="contact" id="PBT" >
+      	<apex:pageBlockTable value="{! r}" var="contact" id="PBT" >
             <apex:column value="{!contact.Name}"/>
             <apex:column value="{!contact.Title}"/>
             <apex:column value="{!contact.Phone}"/>
@@ -42,9 +42,7 @@
           console.log(a)
         }
     
-    	function chargeList(){
-        	
-        }
+    	
 	</script>
     
     
