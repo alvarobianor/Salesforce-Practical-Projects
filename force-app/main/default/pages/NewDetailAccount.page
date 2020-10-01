@@ -3,10 +3,10 @@
     <apex:form >
      <apex:pageBlock title="Account Primary Contact">
         <apex:pageBlockSection columns="2">
-            <apex:outputField value="{! Account.Name }"/>
-            <apex:outputField value="{! Account.Phone }"/>
-            <apex:outputField value="{! Account.Industry }"/>
-            <apex:outputField value="{! Account.AnnualRevenue }"/>               
+            <apex:inputField value="{! Account.Name }"/>
+            <apex:inputField value="{! Account.Phone }"/>
+            <apex:inputField value="{! Account.Industry }"/>
+            <apex:inputField value="{! Account.AnnualRevenue }"/>               
         </apex:pageBlockSection>
          <apex:pageBlockButtons >
             <apex:commandButton action="{! save }" value="Save" />
@@ -49,7 +49,6 @@
           '{!$RemoteAction.AccountResearch.changePriority}',
           id,
           function(result, event){
-              console.log(result)
               document.location.reload(true);
           })
         }
