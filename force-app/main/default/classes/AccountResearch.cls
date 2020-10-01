@@ -1,4 +1,4 @@
-public with sharing class AccountResearch {
+global with sharing class AccountResearch {
     
    public Account acct {get;set;}
     
@@ -45,6 +45,21 @@ public with sharing class AccountResearch {
 
         update acct;
 
+    }
+    
+    @RemoteAction
+    global static String changePriority(String id){
+        Contact oldContact = [Select Id, Name, Is_Primary_Contact__c from Contact where Is_Primary_Contact__c = true limit 1 ];
+        if(oldContact != null){
+            oldContact.Is_Primary_Contact__c = false;
+        }
+        update oldContact;
+        
+        Contact newContact = [Select Id, Name, Is_Primary_Contact__c from Contact where Id = :id];
+        newContact.Is_Primary_Contact__c = true;
+        update newContact;
+        
+        return newContact.Name;
     }
     
    /*

@@ -37,9 +37,21 @@
     
    	<script>
     	// test
-        function myFunction(name) {
-          const a = confirm(name)
-          console.log(a)
+        function myFunction(id) {
+          const confirmation = confirm(id)
+          console.log(confirmation)
+          
+          if(!confirmation){
+          return
+          }
+            
+          Visualforce.remoting.Manager.invokeAction(
+          '{!$RemoteAction.AccountResearch.changePriority}',
+          id,
+          function(result, event){
+              console.log(result)
+              document.location.reload(true);
+          })
         }
     
     	
